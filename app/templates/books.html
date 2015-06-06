@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Authors</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for book in books %}
+            <tr>
+                <td><a href="/book/{{ book.id }}">{{ book.title }}</a></td>
+                <td>
+                    {% for author in book.authors %}
+                        {{ author.name }}{% if not loop.last %},{% endif %}
+                    {% endfor %}
+                </td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+     <a href="/book_add/" class="btn btn-success">Add book</a>
+{% endblock %}

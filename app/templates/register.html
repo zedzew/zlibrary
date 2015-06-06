@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+    <form class="" action="/register/" method="post" name="register">
+        {{ form_r.hidden_tag() }}
+        {% if form_r.errors %}
+                {% for field_name, field_errors in form_r.errors|dictsort if field_errors %}
+                    {% for error in field_errors %}
+                        <div class="alert alert-danger">{{ form_r[field_name].label }}: {{ error }}</div>
+                    {% endfor %}
+                {% endfor %}
+        {% endif %}
+        <label>Username</label>
+        {{ form_r.name(class_="form-control") }}
+        <label>Email</label>
+        {{ form_r.email(class_="form-control") }}
+        <label>Password</label>
+        {{ form_r.password(class_="form-control") }}
+        <br>
+        <input type="submit" class="btn btn-success" value="Create Account">
+    </form>
+{% endblock %}

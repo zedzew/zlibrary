@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Page Not Found :(</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename="css/bootstrap.min.css") }}">
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        .wrap {
+            position: relative;
+            width: 720px;
+            height: auto !important;
+            height: 100%;
+            min-height: 100%;
+            margin: 0px auto;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            background-color: white;
+        }
+
+        hr {
+            -moz-border-bottom-colors: none;
+            -moz-border-image: none;
+            -moz-border-left-colors: none;
+            -moz-border-right-colors: none;
+            -moz-border-top-colors: none;
+            border-color: #FF6766 -moz-use-text-color #FF6766;
+            border-style: solid none;
+            border-width: 1px 0;
+            margin: 18px 0;
+        }
+
+        .popup {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            width: 360px;
+            background: none repeat scroll 0 0 #FFFFFF;
+            margin-left: -180px;
+            border: 1px solid #BEBEBE;
+            border-radius: 7px;
+            padding: 5px;
+            font-family: 'Open Sans', sans-serif;
+            box-shadow: 0 1px 0 #BEBEBE;
+
+        }
+
+        .popup h1 {
+            color: #98A192;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        .error_code {
+            font-size: 128px;
+
+        }
+
+        .error {
+            text-align: center;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: bold;
+            color: #444444;
+            margin: 20px 0;
+        }
+
+        .error:first-child {
+            margin-top: 0;
+        }
+
+        .error_message {
+            font-size: 18px;
+
+        }
+
+        .error_back_link {
+            text-decoration: none;
+            color: #428bca;
+        }
+
+        .no_border {
+            border: 0;
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="popup no_border">
+        <div class="error error_code">
+            404!
+        </div>
+        <div class="error error_message">
+            Something goes wrong. Wait for guests!
+        </div>
+        <div class="error error_back_link">
+            <a href="/" class="error error_back_link">Go Home page</a>
+        </div>
+
+    </div>
+    <div class="empty_inner" style=""></div>
+
+</div>
+</body>
+</html>

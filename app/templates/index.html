@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+    <form class="inline" action="/search/" method="post" name="search">
+        {{ form_s.hidden_tag() }}
+        {% if form_s.errors %}
+                {% for field_name, field_errors in form_s.errors|dictsort if field_errors %}
+                    {% for error in field_errors %}
+                        <div class="alert alert-danger">{{ form_s[field_name].label }}: {{ error }}</div>
+                    {% endfor %}
+                {% endfor %}
+        {% endif %}
+        {{ form_s.search(class_="form-control form-inline search", placeholder="Search") }}
+        <input type="submit" class="btn btn-success form-inline" value="Search">
+    </form>
+    <br>
+    {% if books %}
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Authors</th>
+            <th>Title</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for book in books %}
+            {% if book.authors %}
+                <tr>
+                    <td>
+                        {% for author in book.authors %}
+                            {% if is_authenticated %}
+                                <a href="/author/{{ author.id }}">{{ author.name }}</a>{% if not loop.last %},
+                            {% endif %}
+                            {% else %}
+                                {{ author.name }}{% if not loop.last %},{% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>{% if is_authenticated %}
+                        <a href="/book/{{ book.id }}">{{ book.title }}</a></td>
+                    {% else %}
+                        {{ book.title }}
+                    {% endif %}
+                </tr>
+            {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <div class="alert alert-info">No results</div>
+    {% endif %}
+{% endblock %}
+{% block script %}
+$('input[name="search"]').keypress(function (e) {
+  if (e.which == 13) {
+    $('form[name="search"]').submit();
+    e.preventDefault();
+  }
+});
+{% endblock %}
